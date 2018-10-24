@@ -58,3 +58,8 @@ contact_name_field = "id,name"
 bitcoin_real_time_price_button = "xpath,//android.widget.TextView[@resource-id='com.dudam.rohan.bitcoininfo:id/current_price']"
 bitcoin_price_page_heading = "xpath,//android.widget.TextView[@text='Real Time Price of Bitcoin']"
 bitcoin_price_in_usd = "xpath,//android.widget.TextView[@resource-id='com.dudam.rohan.bitcoininfo:id/doller_value']"
+
+#Locators for avinash demo mobile application - 
+demo_name_input= "id,name_input"
+demo_phone_input= "id,phone_input"
+demo_submit_button= "id,submit_button"

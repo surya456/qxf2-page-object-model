@@ -15,6 +15,7 @@ from tutorial_redirect_page import Tutorial_Redirect_Page
 from contact_page import Contact_Page
 from bitcoin_price_page import Bitcoin_Price_Page
 from bitcoin_main_page import Bitcoin_Main_Page
+from avinash_demo_main_page import Avinash_Demo_Main_Page
 
 
 class PageFactory():
@@ -33,6 +34,8 @@ class PageFactory():
             test_obj = Bitcoin_Main_Page()    
         elif page_name == "bitcoin price page":
             test_obj = Bitcoin_Price_Page()
+        elif page_name == "avinash demo main page":
+            test_obj = Avinash_Demo_Main_Page()
         return test_obj
 
     get_page_object = staticmethod(get_page_object)
