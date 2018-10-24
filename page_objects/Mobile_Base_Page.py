@@ -204,13 +204,12 @@ class Mobile_Base_Page(Borg,unittest.TestCase):
         "Open configurations file,go to right sections,return section obj"
         pass
     
-
+    
     def get_element(self,locator,verbose_flag=True):
         "Return the DOM element of the path or 'None' if the element is not found "
         dom_element = None
         try:
             locator = self.split_locator(locator)
-            print locator
             dom_element = self.driver.find_element(*locator)
         except Exception,e:
             if verbose_flag is True:
@@ -219,7 +218,7 @@ class Mobile_Base_Page(Borg,unittest.TestCase):
                 self.get_session_details()
 
         return dom_element
-
+ 
 
     def split_locator(self,locator):
         "Split the locator type and locator"
