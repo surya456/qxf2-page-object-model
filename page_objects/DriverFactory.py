@@ -186,7 +186,7 @@ class DriverFactory():
             desired_capabilities['xcodeOrgId'] = org_id
             desired_capabilities['xcodeSigningId'] = signing_id
 
-            driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_capabilities)
+            driver = mobile_webdriver.Remote('http://localhost:4723/wd/hub', desired_capabilities)
 
         return driver	
 
