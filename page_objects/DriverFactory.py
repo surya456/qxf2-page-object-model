@@ -174,19 +174,21 @@ class DriverFactory():
                     print ('\033[92m'+"SOLUTION: It looks like you are trying to run test cases with Local Appium Setup. \nPlease make sure to run Appium Server and try again.\n"+'\033[0m')
 
         elif mobile_os_name=='iOS':
+            try:
+                desired_capabilities['app'] = os.path.join(app_path,app_name)
+                desired_capabilities['bundleId'] = app_package
+                desired_capabilities['noReset'] = no_reset_flag
+                if ud_id is not None:
+                    desired_capabilities['udid'] = ud_id
+                    desired_capabilities['xcodeOrgId'] = org_id
+                    desired_capabilities['xcodeSigningId'] = signing_id
 
-            desired_capabilities['app'] = os.path.join(app_path,app_name)
-            '''
-            '/Users/home/Library/Developer/Xcode/DerivedData/avinash_demo-fkjucvsqiqyesvbqpdgvnwjmgfzz/Build/Products/Debug-iphoneos/avinash_demo.app'
-            '''
-            #desired_capabilities['automationName'] = 'XCUITest'
-            desired_capabilities['noReset'] = no_reset_flag
-            desired_capabilities['udid'] = ud_id
-            desired_capabilities['bundleId'] = app_package
-            desired_capabilities['xcodeOrgId'] = org_id
-            desired_capabilities['xcodeSigningId'] = signing_id
+                driver = mobile_webdriver.Remote('http://localhost:4723/wd/hub', desired_capabilities)
+            except Exception,e:
+                print ('\033[91m'+"\nException when trying to get remote webdriver:%s"%sys.modules[__name__]+'\033[0m')
+                print ('\033[91m'+"Python says:%s"%str(e)+'\033[0m')
+                print ('\033[92m'+"SOLUTION: It looks like you are trying to run test cases with Local Appium Setup. \nPlease make sure to run Appium Server or set it up properly and try again.\n"+'\033[0m')
 
-            driver = mobile_webdriver.Remote('http://localhost:4723/wd/hub', desired_capabilities)
 
         return driver	
 
