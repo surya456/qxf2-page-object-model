@@ -1,11 +1,12 @@
 """
-Simple iOS tests on a sample app, showing accessing elements and getting/setting text from them.
+Simple iOS tests on a sample app, showing accessing elements, setting text and clicking them.
 """
 """
 Automated test will do the following:
     # Open the application in iOS device.
     # Enter a value for name field.
-    # 
+    # Enter a value for phone field.
+    # Click on submit button.
 """
 
 import os, sys, time
@@ -98,37 +99,3 @@ if __name__ == '__main__':
     else:
         print 'ERROR: Received incorrect comand line input arguments'
         print options_obj.print_usage()
-
-'''
-class Avinash_Demo_Tests(unittest.TestCase):
-
-    def setUp(self):
-        # set up appium
-        app = os.path.abspath('/Users/home/Library/Developer/Xcode/DerivedData/avinash_demo-fkjucvsqiqyesvbqpdgvnwjmgfzz/Build/Products/Debug-iphoneos/avinash_demo.app')
-        self.driver = webdriver.Remote(
-            command_executor='http://127.0.0.1:4723/wd/hub',
-            desired_capabilities={
-                'app': app,
-                'platformName': 'iOS',
-                'platformVersion': '12.0',
-                'deviceName': 'iPhone 6s',
-                'automationName': 'XCUITest',
-                'noReset': 'true',
-                'udid':'1bfe1bcf50eb874f6592b4a0532f939967cfac26',
-                'bundleId': 'com.qxf2.avinash-demo',
-                'xcodeOrgId': '7B398DTRRW',
-                'xcodeSigningId': 'iPhone Developer'
-            })
-
-    def tearDown(self):
-        self.driver.quit()
-
-    def test_scroll(self):
-        # populate text fields with two random numbers
-        print ("Test")
-        els = self.driver.find_element_by_accessibility_id('name_input').send_keys('Avinash')
-        self.driver.implicitly_wait(5000)
-'''
-
-
-
