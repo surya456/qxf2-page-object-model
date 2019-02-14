@@ -183,7 +183,7 @@ def pytest_addoption(parser):
                       help="Browser. Valid options are firefox, ie and chrome")                      
     parser.addoption("-U","--app_url",
                       dest="url",
-                      default="https://qxf2.com",
+                      default="http://qxf2trainer.pythonanywhere.com",
                       help="The url of the application")
     parser.addoption("-X","--testrail_flag",
                       dest="testrail_flag",
