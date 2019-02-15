@@ -4,9 +4,11 @@ get_page_object() returns the appropriate page object.
 Add elif clauses as and when you implement new pages.
 Pages implemented so far:
 1. Login page
+2. Tutorial page
 """
 
 from page_objects.login_page import Login_Page
+from page_objects.tutorial_page import Tutorial_Page
 
 class PageFactory():
     "PageFactory uses the factory design pattern."
@@ -16,8 +18,8 @@ class PageFactory():
         page_name = page_name.lower()
         if page_name == "login page":
             test_obj = Login_Page(base_url=base_url,trailing_slash_flag=trailing_slash_flag)
-        #elif page_name == "redirect":
-            #test_obj = Tutorial_Redirect_Page(base_url=base_url,trailing_slash_flag=trailing_slash_flag)
+        elif page_name == "tutorial page":
+            test_obj = Tutorial_Page(base_url=base_url,trailing_slash_flag=trailing_slash_flag)
 
         return test_obj
 

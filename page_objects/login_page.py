@@ -42,11 +42,20 @@ class Login_Page(Base_Page):
 
         return result_flag
 
+    def verify_login_worked(self):
+        "Verify that login worked"
+        result_flag = not self.check_element_present(self.username_field)
+        if result_flag:
+            self.switch_page("Tutorial Page")
+        
+        return result_flag
+
     @Wrapit._screenshot
     def login(self,username, password):
         "Login to the application"
         result_flag = self.enter_username(username)
         result_flag &= self.enter_password(password)
         result_flag &= self.click_submit()
+        result_flag &= self.verify_login_worked()
 
         return result_flag
