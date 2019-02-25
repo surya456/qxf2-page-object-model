@@ -75,4 +75,7 @@ class Login_Page(Base_Page):
         negative='Could not locate the logout link after login',
         level='debug')
 
+        if result_flag:
+            self.switch_page("Tutorial Page")
+
         return result_flag

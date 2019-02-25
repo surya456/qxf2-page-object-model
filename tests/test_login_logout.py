@@ -35,6 +35,11 @@ def test_login_logout(base_url,browser,browser_version,os_version,os_name,remote
         positive='PASS: Successfully logged into the application',
         negative='FAIL: Could not login to the applciation')
 
+        result_flag = test_obj.logout()
+        test_obj.log_result(result_flag,
+        positive='PASS: Successfully logged out of the application',
+        negative='FAIL: Could not logout of the application')
+
         #13. Print out the results
         test_obj.write_test_summary()
 
