@@ -105,7 +105,12 @@ class DriverFactory():
         elif  browser.lower() == "ie":
             local_driver = webdriver.Ie()
         elif browser.lower() == "chrome":
-            local_driver = webdriver.Chrome()
+            #local_driver = webdriver.Chrome()
+            options = webdriver.ChromeOptions()
+            options.add_argument('headless')
+            options.add_argument('--no-sandbox')
+            local_driver = webdriver.Chrome(chrome_options=options)
+            
         elif browser.lower() == "opera":
             opera_options = None
             try:
