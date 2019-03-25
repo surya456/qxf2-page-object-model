@@ -13,7 +13,7 @@ import conf.example_form_conf as conf
 import conf.testrail_caseid_conf as testrail_file
 
 
-def test_example_form(base_url,browser,browser_version,os_version,os_name,remote_flag,testrail_flag,tesults_flag,test_run_id,remote_project_name,remote_build_name):
+def test_example_form(base_url,browser,browser_version,os_version,os_name,remote_flag,testrail_flag,reportportal_flag,tesults_flag,test_run_id,remote_project_name,remote_build_name):
 
     "Run the test"
     try:
@@ -38,6 +38,10 @@ def test_example_form(base_url,browser,browser_version,os_version,os_name,remote
 
         if tesults_flag.lower()=='y':
             test_obj.register_tesults()
+
+        if reportpotal_flag.lower()=='y':
+            test_obj.register_reportportal()
+
         
         #4. Get the test details from the conf file
         name = conf.name
@@ -55,6 +59,7 @@ def test_example_form(base_url,browser,browser_version,os_version,os_name,remote
         case_id = testrail_file.test_example_form_name
         test_obj.report_to_testrail(case_id,test_run_id,result_flag)
         test_obj.add_tesults_case("Set Name", "Sets the name in the form", "test_example_form", result_flag, "Failed to set name: %s \nOn url: %s\n"%(name,test_obj.get_current_url()), [test_obj.log_obj.log_file_dir + os.sep + test_obj.log_obj.log_file_name])
+        test_obj.add_reportportal_case("Set Name", "Sets the name in the form", "test_example_form", result_flag, "Failed to set name: %s \nOn url: %s\n"%(name,test_obj.get_current_url()), [test_obj.log_obj.log_file_dir + os.sep + test_obj.log_obj.log_file_name])
         
         #6. Set Email in form
         result_flag = test_obj.set_email(email) 

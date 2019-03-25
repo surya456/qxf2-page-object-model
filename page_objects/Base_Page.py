@@ -612,6 +612,24 @@ class Base_Page(Borg,unittest.TestCase):
             for key, value in custom.items():
                 caseObj[key] = str(value)
             Tesults.add_test_case(caseObj)
+
+    def add_report_portal_case(self, name, desc, suite, result_flag, msg='', files=[], params={}, custom={}):
+        "Update Reportportal with test results"
+        if self.tesults_flag is True:
+            result = "unknown"
+            failReason = ""
+            if result_flag == True:
+                result = "pass"
+            if result_flag == False:
+                result = "fail"
+                failReason = msg
+            for image in self.images:
+                files.append(self.screenshot_dir + os.sep + image + '.png')
+            self.images = []
+            caseObj = {'name': name, 'suite': suite, 'desc': desc, 'result': result, 'reason': failReason, 'files': files, 'params': params}
+            for key, value in custom.items():
+                caseObj[key] = str(value)
+            Reportportal.add_test_case(caseObj)
         
 
     def wait(self,wait_seconds=5,locator=None):
