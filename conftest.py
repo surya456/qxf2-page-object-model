@@ -3,6 +3,7 @@ from conf import browser_os_name_conf
 from utils import post_test_reports_to_slack
 from utils.email_pytest_report import Email_Pytest_Report
 from utils import Tesults
+from utils import Reportportal
 
 
 @pytest.fixture
@@ -82,6 +83,12 @@ def tesults_flag(request):
     "pytest fixture for sending results to tesults"
     return request.config.getoption("--tesults")
 
+'''
+@pytest.fixture
+def reportportal_flag(request):
+    "pytest fixture for sending results to reportportal"
+    return request.config.getoption("--reportportal")
+'''
 
 @pytest.fixture
 def mobile_os_name(request):
@@ -149,6 +156,10 @@ def pytest_terminal_summary(terminalreporter, exitstatus):
 
     if  terminalreporter.config.getoption("--tesults").lower() == 'y':
         Tesults.post_results_to_tesults()
+    
+    if  terminalreporter.config.getoption("--reportportal").lower() == 'y':
+        Reportportal.post_results_to_reportportal()
+    
         
 def pytest_generate_tests(metafunc):
     "test generator function to run tests across different parameters"
@@ -256,6 +267,10 @@ def pytest_addoption(parser):
                       dest="tesults_flag",
                       default='N',
                       help="Y or N. 'Y' if you want to report results with Tesults")
+    parser.addoption("--reportportal",
+                      dest="reportportal_flag",
+                      default='N',
+                      help="Y or N. 'Y' if you want to report results with Reportportal")
     parser.addoption("-D","--app_name",
                       dest="app_name",
                       help="Enter application name to be uploaded.Ex:Bitcoin Info_com.dudam.rohan.bitcoininfo.apk.",
