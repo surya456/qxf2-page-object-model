@@ -144,6 +144,22 @@ def app_path(request):
     return request.config.getoption("-N")    
 
 
+@pytest.hookimpl()
+def pytest_configure(config):
+    # Sets the launch name based on the marker selected.
+    global if_reportportal
+    if_reportportal =config.getoption('--reportportal')
+    
+    try:
+        config._inicache["rp_uuid"]="7efd0795-ee61-4239-89fa-384179d0b7c3"
+        config._inicache["rp_endpoint"]="http://web.demo.reportportal.io"
+        config._inicache["rp_project"]="nilaya123_personal"
+        config._inicache["rp_launch"]="test" 
+ 
+    except Exception as e:
+        print (str(e)) 
+
+
 def pytest_terminal_summary(terminalreporter, exitstatus):
     "add additional section in terminal summary reporting."
     if  terminalreporter.config.getoption("-S").lower() == 'y':
