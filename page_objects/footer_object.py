@@ -6,7 +6,7 @@ We model it as two parts:
 """
 
 from datetime import datetime
-from Base_Page import Base_Page
+from .Base_Page import Base_Page
 import conf.locators_conf as locators
 from utils.Wrapit import Wrapit
 
@@ -48,7 +48,7 @@ class Footer_Object:
         copyright = str(self.get_text(self.copyright_text))
         copyright = copyright.strip()
         #NOTE: We strip out the special '&copy;'
-        copyright = 'Qxf2' + copyright.split('Qxf2')[-1] 
+        copyright = 'Qxf2' + copyright[:-1].split('Qxf2')[-1] 
     
         return copyright
 
@@ -65,7 +65,7 @@ class Footer_Object:
         "Check if the copyright is correct"
         result_flag = False
         actual_copyright = self.get_copyright()
-        self.write('Copyright text: %s'%actual_copyright,'debug')
+        self.write('Copyright text: {}'.format(actual_copyright),'debug')
         #Note: We need to maintain this at 2015 because we promised to not change this page 
         expected_copyright = "Qxf2 Services " + self.copyright_start_year + " - 2015" 
     

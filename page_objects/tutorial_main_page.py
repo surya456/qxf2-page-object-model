@@ -4,11 +4,11 @@ URL: selenium-tutorial-main
 The page consists of a header, footer, form and table objects
 """
 
-from Base_Page import Base_Page
-from form_object import Form_Object
-from header_object import Header_Object
-from table_object import Table_Object
-from footer_object import Footer_Object
+from .Base_Page import Base_Page
+from .form_object import Form_Object
+from .header_object import Header_Object
+from .table_object import Table_Object
+from .footer_object import Footer_Object
 from utils.Wrapit import Wrapit
 
 

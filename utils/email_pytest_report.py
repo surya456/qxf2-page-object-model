@@ -153,7 +153,7 @@ class Email_Pytest_Report:
 
 #---USAGE EXAMPLES
 if __name__=='__main__':
-    print "Start of %s"%__file__
+    print ("Start of %s"%__file__)
      
     #Initialize the Email_Pytest_Report object
     email_obj = Email_Pytest_Report()
@@ -174,7 +174,7 @@ if __name__=='__main__':
     email_obj.send_test_report_email(html_body_flag=False,attachment_flag=True,report_file_path='default')
 
     #5. Send different type of attachment
-    image_file = "C:\Users\Public\Pictures\Sample Pictures\Koala.jpg"  # add attachment file here
+    image_file = ("C:\\Users\\Public\\Pictures\\Sample Pictures\\Koala.jpg")  # add attachment file here
     email_obj.send_test_report_email(html_body_flag=False,attachment_flag=True,report_file_path= image_file)
     '''
     

@@ -5,7 +5,7 @@ a) Clicked
 b) Hovered over
 """
 
-from Base_Page import Base_Page
+from .Base_Page import Base_Page
 import conf.locators_conf as locators
 from utils.Wrapit import Wrapit
 

@@ -7,7 +7,7 @@ import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import conf.locators_conf as locators
 from utils.Wrapit import Wrapit
-from Mobile_Base_Page import Mobile_Base_Page
+from .Mobile_Base_Page import Mobile_Base_Page
 
 
 class Bitcoin_Price_Page(Mobile_Base_Page):
@@ -35,7 +35,7 @@ class Bitcoin_Price_Page(Mobile_Base_Page):
                 negative='Failed to get the bitcoin real time price in usd.',
                 level='debug')
 
-        except Exception,e:
+        except Exception as e:
             self.write("Exception while getting real time price of the bitcoin.")  
             self.write(str(e))
 

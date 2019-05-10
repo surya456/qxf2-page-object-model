@@ -7,7 +7,7 @@ import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import conf.locators_conf as locators
 from utils.Wrapit import Wrapit
-from Mobile_Base_Page import Mobile_Base_Page
+from .Mobile_Base_Page import Mobile_Base_Page
 
 
 class Avinash_Demo_Main_Page(Mobile_Base_Page):

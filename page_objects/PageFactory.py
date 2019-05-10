@@ -10,12 +10,12 @@ Pages implemented so far:
 5. Bitcoin price page
 """
 
-from tutorial_main_page import Tutorial_Main_Page
-from tutorial_redirect_page import Tutorial_Redirect_Page
-from contact_page import Contact_Page
-from bitcoin_price_page import Bitcoin_Price_Page
-from bitcoin_main_page import Bitcoin_Main_Page
-from avinash_demo_main_page import Avinash_Demo_Main_Page
+from page_objects.tutorial_main_page import Tutorial_Main_Page
+from page_objects.tutorial_redirect_page import Tutorial_Redirect_Page
+from page_objects.contact_page import Contact_Page
+from page_objects.bitcoin_price_page import Bitcoin_Price_Page
+from page_objects.bitcoin_main_page import Bitcoin_Main_Page
+from page_objects.avinash_demo_main_page import Avinash_Demo_Main_Page
 
 
 class PageFactory():
