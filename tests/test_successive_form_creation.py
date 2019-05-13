@@ -5,7 +5,6 @@ Our automated test will do the following action repeatedly to fill number of for
     #Fill the example form
     #Click on Click me! button and check if its working fine
 """
-
 #The import statements import: standard Python modules,conf,credential files
 import os,sys,time
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -43,12 +42,12 @@ def test_succesive_form_creation(base_url,browser,browser_version,os_version,os_
         form_number = 1		#Initalize form counter
     
         # Collect form data
-	for form in form_list:
+        for form in form_list:      
             name = form['NAME']
             email = form['EMAIL']
             phone = form['PHONE_NO']
             gender = form['GENDER']
-        
+    
             msg ="\nReady to fill form number %d"%form_number
             test_obj.write(msg)
 
@@ -91,9 +90,9 @@ def test_succesive_form_creation(base_url,browser,browser_version,os_version,os_
         actual_pass = test_obj.pass_counter
         test_obj.teardown()
 
-    except Exception,e:
-        print "Exception when trying to run test :%s"%__file__
-        print "Python says:%s"%str(e)
+    except Exception as e:
+        print("Exception when trying to run test :%s"%__file__)
+        print("Python says:%s"%str(e))
      
     assert expected_pass == actual_pass ,"Test failed: %s"%__file__
 
@@ -101,7 +100,7 @@ def test_succesive_form_creation(base_url,browser,browser_version,os_version,os_
 #---START OF SCRIPT
 
 if __name__=='__main__':
-    print "Start of %s"%__file__
+    print("Start of %s"%__file__)
     #Creating an instance of the class
     options_obj = Option_Parser()
     options=options_obj.get_options()
@@ -120,5 +119,5 @@ if __name__=='__main__':
                                     remote_project_name=options.remote_project_name,
                                     remote_build_name=options.remote_build_name)                                    
     else:
-        print 'ERROR: Received incorrect comand line input arguments'
-        print options_obj.print_usage()
+        print('ERROR: Received incorrect comand line input arguments')
+        print(options_obj.print_usage())
