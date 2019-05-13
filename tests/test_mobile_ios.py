@@ -65,9 +65,9 @@ def test_mobile_iOS(mobile_os_name, mobile_os_version, device_name, app_package,
         actual_pass = test_obj.pass_counter
         test_obj.teardown()
 
-    except Exception, e:
-        print "Exception when trying to run test:%s" % __file__
-        print "Python says:%s" % str(e)
+    except Exception as e:
+        print ("Exception when trying to run test:%s" % __file__)
+        print ("Python says:%s" % str(e))
 
     assert expected_pass == actual_pass,"Test failed: %s"%__file__
 
@@ -75,7 +75,7 @@ def test_mobile_iOS(mobile_os_name, mobile_os_version, device_name, app_package,
 # ---START OF SCRIPT
 
 if __name__ == '__main__':
-    print "Start of %s" % __file__
+    print ("Start of %s" % __file__)
     # Creating an instance of the class.
     options_obj = Option_Parser()
     options = options_obj.get_options()
@@ -97,5 +97,5 @@ if __name__ == '__main__':
                           signing_id = options.signing_id,
                           no_reset_flag = options.no_reset_flag)
     else:
-        print 'ERROR: Received incorrect comand line input arguments'
-        print options_obj.print_usage()
+        print ('ERROR: Received incorrect comand line input arguments')
+        print (options_obj.print_usage())
