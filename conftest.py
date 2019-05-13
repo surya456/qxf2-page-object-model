@@ -151,6 +151,11 @@ def no_reset_flag():
     "pytest fixture for no_reset_flag"
     return pytest.config.getoption("--no_reset_flag")
 
+@pytest.fixture
+def app_path(request):
+    "pytest fixture for app path"
+    return request.config.getoption("-N")
+
 
 def pytest_terminal_summary(terminalreporter, exitstatus):
     "add additional section in terminal summary reporting."
@@ -291,6 +296,9 @@ def pytest_addoption(parser):
                       dest="no_reset_flag",
                       help="Pass false if you want to reset app eveytime you run app else false",
                       default="true")
+    parser.addoption("-N","--app_path",
+                      dest="app_path",
+                      help="Enter app path")
     
 
 
