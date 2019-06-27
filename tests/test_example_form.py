@@ -11,8 +11,74 @@ from page_objects.PageFactory import PageFactory
 from utils.Option_Parser import Option_Parser
 import conf.example_form_conf as conf
 import conf.testrail_caseid_conf as testrail_file
+import fileinput
+import cProfile, pstats, io
+'''
+def profile(f):
+    "Decorator to profile functions"
+    def inner(*args,**kwargs):
+        #try:
+            pr = cProfile.Profile()
+            pr.enable()
+            return f(*args,**kwargs)
+            pr.disable()
+            s = io.StringIO()
+            sortby = 'cumulative'
+            ps = pstats.Stats(pr, stream=s).sort_stats(sortby)
+            ps.print_stats()
+            print(s.getvalue())
+            return inner
+        #except Exception as e:
+            #print(str(e))               
+            #print('Unable to profile function')
+                
+    return inner
 
+def profile(f):
+        "Decorator to profile functions"
+        def inner(*args,**kwargs):
+            try:
+                f(*args,**kwargs)
+            except Exception as e:     
+                print(str(e))           
+                print('Unable to profile function')
+                
+        return inner
 
+@profile
+
+pr = cProfile.Profile()
+pr.enable()
+
+def profileit(func):
+    def wrapper(*args, **kwargs):
+        datafn = func.__name__ + ".profile" # Name the data file sensibly
+        prof = cProfile.Profile()
+        retval = prof.runcall(func, *args, **kwargs)
+        s = io.StringIO()
+        sortby = 'cumulative'
+        ps = pstats.Stats(prof, stream=s).sort_stats(sortby)
+        ps.print_stats()
+        with open(datafn, 'w') as perf_file:
+            perf_file.write(s.getvalue())
+        return retval
+
+    return wrapper
+
+@profileit()
+'''
+def profile(f):
+        "Decorator to profile functions"
+        def inner(*args,**kwargs):
+            try:
+                return f(*args,**kwargs)
+            except Exception as e:     
+                print(str(e))           
+                print('Unable to profile function')
+        
+        
+        return inner
+@profile
 def test_example_form(base_url,browser,browser_version,os_version,os_name,remote_flag,testrail_flag,tesults_flag,test_run_id,remote_project_name,remote_build_name):
 
     "Run the test"
@@ -130,7 +196,30 @@ def test_example_form(base_url,browser,browser_version,os_version,os_name,remote
         
         #13. Print out the results
         test_obj.write_test_summary()
+        '''
+        pr.disable()
+        pr.dump_stats('restats1')
+        p = pstats.Stats('restats1')
+        p.sort_stats('time').print_stats( )
+        
+        pr.disable()
+        s = io.StringIO()
+        sortby = 'cumulative'
+        ps = pstats.Stats(pr, stream=s).sort_stats(sortby)
+        ps = pstats.Stats('thing.txt')
+        p.sort_stats('cumulative').print_stats(10)
+        #ps.dump_stats('restats1')
+        ps.print_stats()
+        print(s.getvalue())
+        
+        pr.disable()
+        s = io.StringIO()
+        ps = pstats.Stats(pr, stream=s).sort_stats('tottime')
+        ps.print_stats()
 
+        with open('test.txt', 'w+') as f:
+            f.write(s.getvalue())
+        '''
         #Teardown
         test_obj.wait(3)
         expected_pass = test_obj.result_counter
@@ -142,8 +231,7 @@ def test_example_form(base_url,browser,browser_version,os_version,os_name,remote
         print("Python says:%s"%str(e))
 
     assert expected_pass == actual_pass, "Test failed: %s"%__file__
-       
-    
+
 #---START OF SCRIPT   
 if __name__=='__main__':
     print("Start of %s"%__file__)
